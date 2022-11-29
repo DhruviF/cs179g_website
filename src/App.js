@@ -18,7 +18,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App mt-4">
+      <div className="Apptabs">
         <TabBar
           tabs={["Search", "Analysis", "MLPrediction", "FlightMap"]}
           selected={this.state.selected}
