@@ -1,0 +1,18 @@
+.SearchBox {
+  height: 100px;
+}
+
+.SurveyFont {
+  font-size: 20px;
+  font-family: sans-serif;
+  margin: 30px;
+}
+
+.DateBorder {
+  margin-bottom: 10px;
+}
+
+.SubmitButton {
+  background-color: rgb(205, 238, 241);
+  border-color: rgb(205, 238, 241);
+}
