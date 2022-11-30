@@ -32,7 +32,7 @@ class App extends React.Component {
           </Tab>
 
           <Tab isSelected={this.state.selected === "Analysis"}>
-            {/* <Analysis/> */}
+            <Analysis/>
           </Tab>
 
           <Tab isSelected={this.state.selected === "Predict Delay"}>
