@@ -1,0 +1,30 @@
+.FlightDisplay {
+  margin-top: 20px;
+}
+
+.card {
+  background-color: rgb(249, 242, 242);
+  box-shadow: 0 1px 4px rgba(52, 51, 51, 0.2);
+  padding: 1rem;
+  width: 94%;
+}
+
+.Line {
+  display: inline;
+  font-size: 24px;
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+}
+
+.Right {
+  text-align: right;
+}
+
+.Left {
+  text-align: left;
+}
+
+.Middle {
+  text-align: center;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./FlightSearch.css";
 import Select from "react-select";
+import SingleFlightDisplay from "./SingleFlightDisplay";
 
 const optionFlights = [
   { value: "Endeavor Air Inc. ", label: "Endeavor Air Inc. " },
@@ -500,6 +501,10 @@ function SearchBar() {
           </div>
         </div>
       </form>
+
+      <div>
+        <SingleFlightDisplay data={} />
+      </div>
     </div>
   );
 }
