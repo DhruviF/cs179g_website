@@ -3,7 +3,9 @@ import "./App.css";
 import TabBar from "./components/TabBar";
 import Tab from "./components/Tab";
 import FlightSearch from "./components/FlightSearch";
-import CardGrid from "./components/CardGrid";
+import SingleFlightDisplay from "./components/SingleFlightDisplay";
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -28,9 +30,6 @@ class App extends React.Component {
         >
           <Tab isSelected={this.state.selected === "Search"}>
             <FlightSearch></FlightSearch>
-            <div>
-              <CardGrid></CardGrid>
-            </div>
           </Tab>
 
           <Tab isSelected={this.state.selected === "Analysis"}></Tab>
@@ -42,6 +41,7 @@ class App extends React.Component {
       </div>
     );
   }
+
 }
 
 export default App;
