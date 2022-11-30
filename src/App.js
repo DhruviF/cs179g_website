@@ -3,6 +3,8 @@ import "./App.css";
 import TabBar from "./components/TabBar";
 import Tab from "./components/Tab";
 import FlightSearch from "./components/FlightSearch";
+import Analysis from "./components/Analysis";
+import DelayPrediction from "./components/MLComponents/DelayPrediction";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +23,7 @@ class App extends React.Component {
     return (
       <div className="Apptabs">
         <TabBar
-          tabs={["Search", "Analysis", "MLPrediction", "FlightMap"]}
+          tabs={["Search", "Analysis", "Predict Delay", "FlightMap"]}
           selected={this.state.selected}
           setSelected={this.setSelected}
         >
@@ -29,9 +31,13 @@ class App extends React.Component {
             <FlightSearch></FlightSearch>
           </Tab>
 
-          <Tab isSelected={this.state.selected === "Analysis"}></Tab>
+          <Tab isSelected={this.state.selected === "Analysis"}>
+            {/* <Analysis/> */}
+          </Tab>
 
-          <Tab isSelected={this.state.selected === "MLPrediction"}></Tab>
+          <Tab isSelected={this.state.selected === "Predict Delay"}>
+            <DelayPrediction/>
+          </Tab>
 
           <Tab isSelected={this.state.selected === "FlightMap"}></Tab>
         </TabBar>
