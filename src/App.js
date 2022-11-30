@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import TabBar from "./components/TabBar";
 import Tab from "./components/Tab";
+import FlightSearch from "./components/FlightSearch";
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +25,9 @@ class App extends React.Component {
           selected={this.state.selected}
           setSelected={this.setSelected}
         >
-          <Tab isSelected={this.state.selected === "Search"}></Tab>
+          <Tab isSelected={this.state.selected === "Search"}>
+            <FlightSearch></FlightSearch>
+          </Tab>
 
           <Tab isSelected={this.state.selected === "Analysis"}></Tab>
 
