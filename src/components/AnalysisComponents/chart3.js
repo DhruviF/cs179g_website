@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import {chartData} from "./chartData1";
+import {chartData3} from "./chartData3";
 import {Bar} from "react-chartjs-2"
 import Chart from 'chart.js/auto';
 
 
-function Chart1() {
+function Chart3() {
 
-  var airlineLabels = chartData.map(function(d) {
-    return d.Airline;
+  var airlineLabels = chartData3.map(function(d) {
+    return d.name;
   });
-  var delayRatioData = chartData.map(function(d) {
-    return d.entiredelayedRatio;
+  var delayRatioData = chartData3.map(function(d) {
+    return d.students;
   });
   
   return (
@@ -21,7 +21,7 @@ function Chart1() {
           labels: airlineLabels,
           datasets: [
             {
-              label: "Flight Delay Percentage by Airline", 
+              label: "Flight Delay by Day of the Week", 
               data: delayRatioData,
             },
           ]
@@ -33,4 +33,4 @@ function Chart1() {
   );
 }
 
-export default Chart1;
+export default Chart3;

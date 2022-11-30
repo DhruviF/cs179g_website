@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import {chartData2} from "./chartData2";
 import {Bar} from "react-chartjs-2"
-import "./chart2.css"
 import Chart from 'chart.js/auto';
 
 
