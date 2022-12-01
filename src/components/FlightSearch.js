@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./FlightSearch.css";
 import Select from "react-select";
+import SingleFlightDisplay from "./SingleFlightDisplay";
+import { render } from "@testing-library/react";
 
 const optionFlights = [
   { value: "Endeavor Air Inc. ", label: "Endeavor Air Inc. " },
@@ -437,23 +439,81 @@ const optionCities = [
   { value: "CDB", label: "        Cold Bay, AK" },
 ];
 
+
 function SearchBar() {
   const [airline, setAirline] = useState({});
   const [departureLocation, setDepartureLocation] = useState({});
   const [arrivalLocation, setArrivalLocation] = useState({});
   const [date, setDate] = useState();
+  const [newData, setNewData] = useState([]);
 
   function handleSubmit(event) {
     console.log(airline.value);
     console.log(departureLocation.value);
     console.log(arrivalLocation.value);
-    console.log(date);
+    console.log(date.substring(0,4)); //year
+    console.log(date.substring(5,7)); //month
+    console.log(date.substring(8,10)); //day
+
+    const newDataDummy = [{
+      "Airline" : 1,
+      "Origin": 1,
+      "Dest" : 1,
+      "DayofMonth" : 1,
+      "Month" : 1,
+      "Year": 1,
+      "DepTime": 123,
+      "ArrTime": 6969,
+      "ActualElapsedTime": 88888,
+      "DepDel15": 1,
+      "ArrDel15": 9
+    },{
+      "Airline" : 1,
+      "Origin": 1,
+      "Dest" : 1,
+      "DayofMonth" : 1,
+      "Month" : 1,
+      "Year": 1,
+      "DepTime": 123,
+      "ArrTime": 6969,
+      "ActualElapsedTime": 88888,
+      "DepDel15": 1,
+      "ArrDel15": 9
+    }];
+
+    setNewData(newDataDummy);
+    
+    /*
+    newData = await fetch("./api", {
+      method: 'POST',
+      headers:{
+        'content-type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        Airline: airline.value,
+        Origin: departureLocation.value,
+        Dest: arrivalLocation.value,
+        DayofMonth: date.substring(0,4),
+        Month: date.substring(5,7),
+        Year: date.substring(8,10)
+      })
+      .then(res => res.json())
+    })
+    */
+
+    //newNewData = newData;
+
+    //console.log(newNewData);
+
+    //console.log(newData);
+
     event.preventDefault();
   }
 
   return (
     <div className="SearchBox">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
         <div className="SurveyFont">
           <div>
             <label>Select Airline</label>
@@ -498,8 +558,13 @@ function SearchBar() {
           <div className="SubmitButton">
             <input type="submit" value="Search Flights"></input>
           </div>
+
+          <div>
+            <SingleFlightDisplay data={newData}></SingleFlightDisplay>
+          </div>
         </div>
       </form>
+      
     </div>
   );
 }
