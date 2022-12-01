@@ -62,7 +62,12 @@ class App extends React.Component {
           'Accept':'application/json'
         },
         body: JSON.stringify({
-          month: this.state.Month.valueOf()
+          month: this.state.Month.valueOf(),
+          year: this.state.year.valueOf(),
+          originCode: this.state.originCode.valueOf(),
+          destCode: this.state.destCode.valueOf(),
+          dayofMonth: this.state.dayofMonth.valueOf(),
+          airline: this.state.airline.valueOf()
         })
       })
       .then(res => res.json())
