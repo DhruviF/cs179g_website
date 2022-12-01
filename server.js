@@ -12,8 +12,8 @@ app.use(cors())
 app.post('/api', async (req,res) =>{
     console.log('Called')
     const result = await dbOperation.searchBarQuery('Envoy Air', 'LIT', 'ORD', req.body.month, 1, 2019)
-    console.log(typeof(req.body.month))
-    res.send({result})
+    console.log(JSON.stringify(result.recordset[0]))
+    res.send(result.recordset[0])
 })
 
 // dbOperation.searchBarQuery('Envoy Air', 'LIT', 'ORD', 4, 1, 2019).then(res=>{

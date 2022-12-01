@@ -11,7 +11,7 @@ class App extends React.Component {
 
     this.state = {
       selected: "Search",
-      returnedData:"bye",
+      returnedData: {airline: " ", originCode:" ", destCode:" ", Month:-1, dayofMonth:-1, year:-1},
       airline: "",
       originCode: "",
       destCode: "",
@@ -27,30 +27,30 @@ class App extends React.Component {
   render() {
     const setInput = (e) =>{
       const {name, value} = e.target
-      console.log(this.state.inputValues)
+      //console.log(this.state.inputValues)
       if (name === "Month"){
         this.setState({Month: parseInt(value)})
-        console.log(this.state.Month.valueOf())
+        //console.log(this.state.Month.valueOf())
       }
       else if(name === 'dayofMonth'){
         this.setState({dayofMonth: parseInt(value)})
-        console.log(this.state.dayofMonth.valueOf())
+        //console.log(this.state.dayofMonth.valueOf())
       }
       else if(name === 'year'){
         this.setState({year: parseInt(value)})
-        console.log(this.state.year.valueOf())
+        //console.log(this.state.year.valueOf())
       }
       else if(name === 'airline'){
         this.setState({airline: value})
-        console.log(this.state.airline.valueOf())
+        //console.log(this.state.airline.valueOf())
       }
       else if(name === 'destCode'){
         this.setState({destCode: value})
-        console.log(this.state.destCode.valueOf())
+        //console.log(this.state.destCode.valueOf())
       }
       else if(name === 'originCode'){
         this.setState({originCode: value})
-        console.log(this.state.originCode.valueOf())
+        //console.log(this.state.originCode.valueOf())
       }
 
     }
@@ -127,8 +127,11 @@ class App extends React.Component {
           <Tab isSelected={this.state.selected === "FlightMap"}></Tab>
         </TabBar>
 
-        <button onClick={() => this.setState({returnedData: getData('/api')})}>test</button>
-        <p>airline: {this.state.returnedData.airline}</p>
+        <button onClick={() => this.setState(
+          {returnedData: getData('/api')}
+          )}
+          >test</button>
+        <p>airline: {JSON.stringify(this.state.returnedData)}</p>
         <p>originCode: {this.state.returnedData.originCode}</p>
         <p>destCode: {this.state.returnedData.destCode}</p>
         <p>Month: {this.state.returnedData.Month}</p>
