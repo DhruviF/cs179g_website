@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./FlightSearch.css";
 import Select from "react-select";
 import SingleFlightDisplay from "./SingleFlightDisplay";
+import { render } from "@testing-library/react";
 
 const optionFlights = [
   { value: "Endeavor Air Inc. ", label: "Endeavor Air Inc. " },
@@ -444,6 +445,7 @@ function SearchBar() {
   const [departureLocation, setDepartureLocation] = useState({});
   const [arrivalLocation, setArrivalLocation] = useState({});
   const [date, setDate] = useState();
+  const [newData, setNewData] = useState([]);
 
   function handleSubmit(event) {
     console.log(airline.value);
@@ -453,7 +455,7 @@ function SearchBar() {
     console.log(date.substring(5,7)); //month
     console.log(date.substring(8,10)); //day
 
-    const newData = [{
+    const newDataDummy = [{
       "Airline" : 1,
       "Origin": 1,
       "Dest" : 1,
@@ -479,8 +481,8 @@ function SearchBar() {
       "ArrDel15": 9
     }];
 
-    console.log(newData);
-
+    setNewData(newDataDummy);
+    
     /*
     newData = await fetch("./api", {
       method: 'POST',
@@ -557,7 +559,9 @@ function SearchBar() {
             <input type="submit" value="Search Flights"></input>
           </div>
 
-          <SingleFlightDisplay data={[]}></SingleFlightDisplay>
+          <div>
+            <SingleFlightDisplay data={newData}></SingleFlightDisplay>
+          </div>
         </div>
       </form>
       
