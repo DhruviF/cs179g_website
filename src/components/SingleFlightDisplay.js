@@ -2,7 +2,9 @@ import React from "react";
 import "./SingleFlightDisplay.css";
 
 function SingleFlightDisplay({ data }) {
+
   console.log(data);
+
   return (
     <div className="FlightDisplay">
       {data.map((value, key) => {
@@ -44,4 +46,6 @@ function SingleFlightDisplay({ data }) {
   );
 }
 
+
 export default SingleFlightDisplay;
+

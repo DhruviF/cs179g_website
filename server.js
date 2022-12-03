@@ -9,9 +9,18 @@ app.use(express.json())
 app.use(express.urlencoded())
 app.use(cors())
 
-app.post('/api', function(req,res){
+
+app.post('/api', async (req,res) =>{
     console.log('Called')
-    res.send({result: 'Helooooooooo'})
+    const result = await dbOperation.searchBarQuery(
+        req.body.airline, 
+        req.body.destCode, 
+        req.body.originCode, 
+        req.body.month, 
+        req.body.dayofMonth, 
+        req.body.year)
+    res.send(result.recordset[0])
+
 })
 
 // dbOperation.searchBarQuery('Envoy Air', 'LIT', 'ORD', 4, 1, 2019).then(res=>{

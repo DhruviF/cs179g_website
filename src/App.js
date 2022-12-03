@@ -3,7 +3,9 @@ import "./App.css";
 import TabBar from "./components/TabBar";
 import Tab from "./components/Tab";
 import FlightSearch from "./components/FlightSearch";
+
 import SingleFlightDisplay from "./components/SingleFlightDisplay";
+
 
 
 
@@ -13,14 +15,69 @@ class App extends React.Component {
 
     this.state = {
       selected: "Search",
+      returnedData: {airline: " ", originCode:" ", destCode:" ", Month:-1, dayofMonth:-1, year:-1},
+      airline: "",
+      originCode: "",
+      destCode: "",
+      Month:0,
+      dayofMonth:0,
+      year:0
     };
   }
 
   setSelected = (tab) => {
     this.setState({ selected: tab });
   };
-
   render() {
+    const setInput = (e) =>{
+      const {name, value} = e.target
+      //console.log(this.state.inputValues)
+      if (name === "Month"){
+        this.setState({Month: parseInt(value)})
+        //console.log(this.state.Month.valueOf())
+      }
+      else if(name === 'dayofMonth'){
+        this.setState({dayofMonth: parseInt(value)})
+        //console.log(this.state.dayofMonth.valueOf())
+      }
+      else if(name === 'year'){
+        this.setState({year: parseInt(value)})
+        //console.log(this.state.year.valueOf())
+      }
+      else if(name === 'airline'){
+        this.setState({airline: value})
+        //console.log(this.state.airline.valueOf())
+      }
+      else if(name === 'destCode'){
+        this.setState({destCode: value})
+        //console.log(this.state.destCode.valueOf())
+      }
+      else if(name === 'originCode'){
+        this.setState({originCode: value})
+        //console.log(this.state.originCode.valueOf())
+      }
+
+    }
+    const getData = async () =>{
+      const newData = await fetch('/api', {
+        method: 'POST',
+        headers:{
+          'content-type': 'application/json',
+          'Accept':'application/json'
+        },
+        body: JSON.stringify({
+          month: this.state.Month.valueOf(),
+          year: this.state.year.valueOf(),
+          originCode: this.state.originCode.valueOf(),
+          destCode: this.state.destCode.valueOf(),
+          dayofMonth: this.state.dayofMonth.valueOf(),
+          airline: this.state.airline.valueOf()
+        })
+      })
+      .then(res => res.json())
+      console.log(newData);
+      return newData
+    }
     return (
       <div className="Apptabs">
         <TabBar
@@ -29,7 +86,47 @@ class App extends React.Component {
           setSelected={this.setSelected}
         >
           <Tab isSelected={this.state.selected === "Search"}>
-            <FlightSearch></FlightSearch>
+            <input 
+                  name="airline" 
+                  placeholder ="airline" 
+                  onChange={setInput}
+                  >
+                  
+            </input>
+            <input 
+                  name="originCode" 
+                  placeholder ="originCode" 
+                  onChange={setInput}
+                  >
+            </input>
+            <input 
+                  name="destCode" 
+                  placeholder ="destCode" 
+                  onChange={setInput}
+                  >
+
+            </input>
+            <input 
+                  type="number" 
+                  name="Month" 
+                  placeholder ="Month" 
+                  onChange={setInput}
+                  >
+            </input>
+            <input 
+                  type="number" 
+                  name="dayofMonth" 
+                  placeholder ="dayofMonth" 
+                  onChange={setInput}
+                  ></input>
+            <input 
+                  type="number" 
+                  name="year" 
+                  placeholder ="year" 
+                  onChange={setInput}
+                  >
+            </input>
+
           </Tab>
 
           <Tab isSelected={this.state.selected === "Analysis"}></Tab>
@@ -38,6 +135,18 @@ class App extends React.Component {
 
           <Tab isSelected={this.state.selected === "FlightMap"}></Tab>
         </TabBar>
+
+        <button onClick={() => this.setState(
+          {returnedData: getData('/api')}
+          )}
+          >test</button>
+        <p>airline: {JSON.stringify(this.state.returnedData)}</p>
+        <p>originCode: {this.state.returnedData.originCode}</p>
+        <p>destCode: {this.state.returnedData.destCode}</p>
+        <p>Month: {this.state.returnedData.Month}</p>
+        <p>dayofMonth: {this.state.returnedData.dayofMonth}</p>
+        <p>year: {this.state.returnedData.year}</p>
+        
       </div>
     );
   }
