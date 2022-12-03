@@ -3,7 +3,11 @@ import "./App.css";
 import TabBar from "./components/TabBar";
 import Tab from "./components/Tab";
 import FlightSearch from "./components/FlightSearch";
-import { timingSafeEqual } from "crypto";
+
+import SingleFlightDisplay from "./components/SingleFlightDisplay";
+
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -146,6 +150,7 @@ class App extends React.Component {
       </div>
     );
   }
+
 }
 
 export default App;

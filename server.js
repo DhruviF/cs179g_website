@@ -9,6 +9,7 @@ app.use(express.json())
 app.use(express.urlencoded())
 app.use(cors())
 
+
 app.post('/api', async (req,res) =>{
     console.log('Called')
     const result = await dbOperation.searchBarQuery(
@@ -19,6 +20,7 @@ app.post('/api', async (req,res) =>{
         req.body.dayofMonth, 
         req.body.year)
     res.send(result.recordset[0])
+
 })
 
 // dbOperation.searchBarQuery('Envoy Air', 'LIT', 'ORD', 4, 1, 2019).then(res=>{
